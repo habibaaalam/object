@@ -1,0 +1,139 @@
+<!DOCTYPE html>  
+<html>  
+<head>  
+<title>Item Price Calculator</title>  
+<style>  
+body {  
+  font-family: sans-serif;  
+}  
+table {  
+  width: 50%;  
+  border-collapse: collapse;  
+  margin: 20px auto;  
+}  
+th, td {  
+  border: 1px solid #ddd;  
+  padding: 8px;  
+  text-align: left;  
+}  
+th {  
+  background-color: #f2f2f2;  
+}  
+</style>  
+</head>  
+<body>  
+
+<h1>Item Price Calculator</h1>  
+
+<table>  
+  <thead>  
+    <tr>  
+      <th>Item Name</th>  
+      <th>Price</th>  
+      <th>Quantity</th>  
+      <th>Total Price</th>  
+    </tr>  
+  </thead>  
+  <tbody id="itemsTableBody">  
+    </tbody>  
+</table>  
+
+<p><b>Total Price of All Items:</b> <span id="totalPrice">Calculating...</span></p>  
+
+<script>  
+const itemsArray = [  
+  { name: "juice", price: "50", quantity: "3" },  
+  { name: "cookie", price: "30", quantity: "9" },  
+  { name: "shirt", price: "880", quantity: "1" },  
+  { name: "pen", price: "100", quantity: "2" }  
+];  
+
+const tableBody = document.getElementById("itemsTableBody");  
+let totalPriceAllItems = 0;  
+
+itemsArray.forEach(item => {  
+  const itemTotalPrice = parseInt(item.price) * parseInt(item.quantity);  
+  totalPriceAllItems += itemTotalPrice;  
+
+  const row = tableBody.insertRow();  
+  const nameCell = row.insertCell();  
+  const priceCell = row.insertCell();  
+  const quantityCell = row.insertCell();  
+  const totalPriceCell = row.insertCell();  
+
+  nameCell.textContent = item.name;  
+  priceCell.textContent = "$" + item.price;  
+  quantityCell.textContent = item.quantity;  
+  totalPriceCell.textContent = "$" + itemTotalPrice;  
+});  
+
+document.getElementById("totalPrice").textContent = "$" + totalPriceAllItems; 
+// questio 2
+const person = {  
+  name: "John Doe",  
+  email: "john.doe@example.com",  
+  password: "securepassword",  
+  age: 30,  
+  gender: "Male",  
+  city: "New York",  
+  country: "USA"  
+};  
+
+// Check if age and country properties exist  
+const hasAge = person.hasOwnProperty('age');  
+const hasCountry = person.hasOwnProperty('country');  
+
+console.log("Has age property:", hasAge); // Output: true  
+console.log("Has country property:", hasCountry); // Output: true  
+
+
+// Check if firstName and lastName properties exist  
+const hasFirstName = person.hasOwnProperty('firstName');  
+const hasLastName = person.hasOwnProperty('lastName');  
+
+console.log("Has firstName property:", hasFirstName); // Output: false  
+console.log("Has lastName property:", hasLastName); // Output: false  
+
+
+//Alternative approach using 'in' operator (less strict):  
+
+console.log("'age' in person:", 'age' in person); //true - checks the prototype chain as well  
+console.log("'firstName' in person:", 'firstName' in person); //false 
+// questio 3
+// Constructor function for creating 'Person' objects  
+function Person(firstName, lastName, age, city) {  
+  this.firstName = firstName;  
+  this.lastName = lastName;  
+  this.age = age;  
+  this.city = city;  
+
+  // Method to get full name  
+  this.getFullName = function() {  
+    return `${this.firstName} ${this.lastName}`;  
+  };  
+}  
+
+
+// Create multiple Person records  
+const person1 = new Person("Alice", "Smith", 30, "New York");  
+const person2 = new Person("Bob", "Johnson", 25, "Los Angeles");  
+const person3 = new Person("Charlie", "Brown", 35, "Chicago");  
+
+
+// Access and display properties  
+console.log(person1.firstName); // Output: Alice  
+console.log(person2.getFullName()); // Output: Bob Johnson  
+console.log(person3.age); // Output: 35  
+
+
+//Example of iterating through an array of Person objects:  
+
+const people = [person1, person2, person3];  
+
+people.forEach(person => {  
+  console.log(`${person.getFullName()} lives in ${person.city}.`);  
+});
+</script>  
+
+</body>  
+</html>
